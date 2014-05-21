@@ -1,0 +1,27 @@
+Animal Crackers     	108
+Cheez-It            	324
+Chips               	700
+Gatorade            	668
+Goldfish            	192
+Half & Half         	192
+Hershey's Almond    	144
+Hershey's Cook/Crm  	144
+Hershey's Full Size 	120
+Hershey's Nuggets   	140
+Hershey's/Mars Mini 	350
+Hot Chocolate       	120
+K-Cup               	160
+Kit Kat             	396
+Mini Pretzels       	48
+Quaker Cereal Bars  	48
+Quaker Chewy        	96
+Reese's Cups        	504
+Reese's Pieces      	144
+Rice Krispies Bars  	288
+Ritz Bits           	180
+Sippers             	5000
+Skor                	18
+Slim Jims           	350
+Special K Straw.    	168
+Tea                 	60
+Water               	288
