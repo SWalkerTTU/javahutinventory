@@ -22,7 +22,6 @@ public class JavaHutInventory {
     public static void main(String[] args) throws IOException {
         TreeMap<String, Integer> itemMap = new TreeMap<>();
 
-
         //Load itemMap with item numbers and counts
         Files.lines(Paths.get("JavaHut14Intake.txt", ""),
                 Charset.forName("US-ASCII"))
