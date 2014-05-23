@@ -25,6 +25,7 @@ public class JavaHutInventory {
 
         TreeMap<String, Integer> itemMap = new TreeMap<>();
 
+        //Load itemMap with item numbers and counts
         Files.lines(Paths.get(prefix + "Intake.txt", ""),
                 Charset.forName("US-ASCII"))
                 .filter((String s)
@@ -37,6 +38,7 @@ public class JavaHutInventory {
                     }
                 });
 
+        //Write out itemMap to file
         Files.write(Paths.get(prefix + "ItemList.txt", ""),
                 (Iterable<String>) () -> itemMap.entrySet()
                 .parallelStream()
@@ -48,6 +50,8 @@ public class JavaHutInventory {
 
         TreeMap<String, ItemRecord> namePackMap = new TreeMap<>();
 
+        //Populate namePackMap with IDs and inventory data 
+        //  (item class / pack count)
         Files.lines(Paths.get(prefix + "Inventory.dat", ""),
                 Charset.forName("US-ASCII"))
                 .forEach((String s) -> {
@@ -57,8 +61,12 @@ public class JavaHutInventory {
                                     Integer.parseInt(parts[2].trim())));
                 });
 
+        //countMap contains the item class name as a key and an
+        //  Integer count
         TreeMap<String, Integer> countMap = new TreeMap<>();
 
+        //Load countMap by item class name within the ItemRecord and
+        //  add up unit counts
         itemMap.forEach((String s, Integer i) -> {
             ItemRecord ir = namePackMap.get(s);
             if (countMap.containsKey(ir.name)) {
@@ -69,12 +77,14 @@ public class JavaHutInventory {
             }
         });
 
+        //This ArrayList is to facilitate output
         ArrayList<String> itemCounts = countMap.entrySet().parallelStream()
                 .map(e -> String.format("%1$-20s", e.getKey())
                         + "\t"
                         + e.getValue().toString())
                 .collect(Collectors.toCollection(ArrayList::new));
 
+        //Console and file output
         itemCounts.forEach(s -> System.out.println(s));
 
         Files.write(Paths.get(prefix + "ItemCounts.txt", ""), itemCounts,
