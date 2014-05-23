@@ -15,14 +15,17 @@ import java.util.stream.Collectors;
  */
 public class JavaHutInventory {
 
+    private static final String prefix = "JavaHut14";
+
     /**
      * @param args the command line arguments
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
+
         TreeMap<String, Integer> itemMap = new TreeMap<>();
 
-        Files.lines(Paths.get("JavaHut14Intake.txt", ""),
+        Files.lines(Paths.get(prefix + "Intake.txt", ""),
                 Charset.forName("US-ASCII"))
                 .filter((String s)
                         -> !s.equals("") && !s.contains("-"))
@@ -34,7 +37,7 @@ public class JavaHutInventory {
                     }
                 });
 
-        Files.write(Paths.get("JavaHut14ItemList.txt", ""),
+        Files.write(Paths.get(prefix + "ItemList.txt", ""),
                 (Iterable<String>) () -> itemMap.entrySet()
                 .parallelStream()
                 .map(e -> e.getKey()
@@ -45,7 +48,7 @@ public class JavaHutInventory {
 
         TreeMap<String, ItemRecord> namePackMap = new TreeMap<>();
 
-        Files.lines(Paths.get("JavaHut14Inventory.dat", ""),
+        Files.lines(Paths.get(prefix + "Inventory.dat", ""),
                 Charset.forName("US-ASCII"))
                 .forEach((String s) -> {
                     String[] parts = s.split(",");
@@ -74,7 +77,7 @@ public class JavaHutInventory {
 
         itemCounts.forEach(s -> System.out.println(s));
 
-        Files.write(Paths.get("JavaHut14ItemCounts.txt", ""), itemCounts,
+        Files.write(Paths.get(prefix + "ItemCounts.txt", ""), itemCounts,
                 Charset.forName("US-ASCII"),
                 StandardOpenOption.TRUNCATE_EXISTING);
     }
